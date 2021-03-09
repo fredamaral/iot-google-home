@@ -34,16 +34,13 @@ router.get('/', function (req, res, next) {
     `);
 });
 
-router.get('/login', function (req, res, next) {
-    const responseUrl = util.format(
-        '%s?code=%s&state=%s',
-        decodeURIComponent(req.query.redirect_uri),
-        'xxxxxx',
-        req.query.state
-    );
-    const redirectUrl = `/login?response_url=${encodeURIComponent(responseUrl)}`;
-    functions.logger.debug('redirect:', redirectUrl);
-    return res.redirect(redirectUrl);
+router.get('/refresh', function (req, res, next) {
+    res.send({
+        "token_type": "Bearer",
+        "access_token": "adas",
+        "refresh_token": "asdsadas",
+        "expires_in": 600
+    });
 });
 
 function validateToken(dados) {
